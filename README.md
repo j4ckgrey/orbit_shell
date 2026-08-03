@@ -1,4 +1,4 @@
-# 🌌 Orbit — Spatial Desktop Shell for INMO Air3
+# Orbit — Spatial Desktop Shell for INMO Air3
 
 <div align="center">
 
