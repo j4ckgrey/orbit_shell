@@ -2,7 +2,8 @@
 
 <div align="center">
 
-![Orbit Banner](https://img.shields.io/badge/Platform-INMO%20Air3%20%28Android%29-6f42c1?style=for-the-badge&logo=android)
+![Orbit Banner](screenshots/banner.png)
+
 [![Discord](https://img.shields.io/badge/Discord-Join%20Community-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/4yB8URK9s)
 
 **The ultimate open, butter-smooth multi-window spatial shell for INMO Air3 AR Smart Glasses.**
@@ -12,6 +13,11 @@
 ---
 
 </div>
+
+> ⚠️ **Personal Use Disclaimer**  
+> This build and its custom modifications are provided strictly for **personal use**. Anyone who chooses to install, run, or modify this release does so entirely **at their own risk and under their own responsibility**.
+
+---
 
 ## 🚀 What is Orbit?
 
