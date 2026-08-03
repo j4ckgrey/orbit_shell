@@ -75,9 +75,9 @@ Includes seamless setup for patched Open Camera binaries, bypassing stock limits
 
 <div align="center">
 
-| 3D Spatial Workspace | App Launcher Grid | Command Bar & Settings |
+| 3D Spatial Workspace | App Launcher Grid | Settings |
 | :---: | :---: | :---: |
-| ![Spatial Desktop](screenshots/1.png) | ![App Grid](screenshots/2.png) | ![Controls](screenshots/3.png) |
+| ![Spatial Desktop](screenshots/2.png) | ![App Grid](screenshots/1.png) | ![Controls](screenshots/3.png) |
 
 </div>
 
