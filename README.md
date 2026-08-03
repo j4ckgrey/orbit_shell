@@ -3,8 +3,6 @@
 <div align="center">
 
 ![Orbit Banner](https://img.shields.io/badge/Platform-INMO%20Air3%20%28Android%29-6f42c1?style=for-the-badge&logo=android)
-![Version](https://img.shields.io/badge/Release-v0.1.0-blue?style=for-the-badge)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 [![Discord](https://img.shields.io/badge/Discord-Join%20Community-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/4yB8URK9s)
 
 **The ultimate open, butter-smooth multi-window spatial shell for INMO Air3 AR Smart Glasses.**
