@@ -129,3 +129,5 @@ Our community is growing fast! Whether you have feature requests, feedback, bug 
 
 **Made with ❤️ for the AR Community**
 </div>
+A little support goes a long way! If you’d like to help me keep creating, you can do so at https://ko-fi.com/j4ckgrey image
+<img width="1200" height="600" alt="image" src="https://github.com/user-attachments/assets/1e1ef242-3cbf-4900-b035-33bcda376f02" />
