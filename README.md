@@ -60,14 +60,40 @@ A single, intelligent, auto-hiding bar along the bottom of your field of view pu
 * **Recenter (`⌖`)**: One-tap spatial recentering of your workspace.
 * **Window Controls**: Resize (`−`/`+`), Maximise (`⛶`), Back (`←`), and Close (`✕`).
 
-### 📸 Unlocked 4K & 16MP Camera Integration
-Includes seamless setup for patched Open Camera binaries, bypassing stock limits to unlock full 16MP photos (4608x3456) and 4K 30fps video recording on the INMO Air3 sensor.
+### 🎮 Samsung Gear VR Controller Support
+Orbit drives the Gear VR controller as a full pointer — **the platform cannot do this itself.** The controller carries its HID characteristics under a non-standard GATT service (`0x1879`, not `0x1812`), so Android's `HidHostService` walks straight past it, creates no `uhid` node, and never makes an input device out of it. Orbit talks to it directly over GATT and turns it into a cursor.
+
+* **Touchpad as a trackpad** — thumb movement moves the cursor, with no drift and no calibration.
+* **Trigger** = left click and drag · **Pad click** = long press (context menu) · **Back / Home / Volume** work as labelled.
+* **Screen-off aware** — the link is dropped when the display sleeps, so a connected controller can't hold the SoC out of suspend.
+* **Toggle in Settings → System** — off if you don't own one.
+
+> ⚠️ **Known limitation:** the controller's firmware uses BLE *slave latency*, delivering ~6 samples in a burst every ~90 ms rather than evenly at 66 Hz. This is not configurable from the host — connection-parameter updates are accepted and then ignored by the device. Orbit replays each burst at display rate so movement stays continuous, but roughly 45–90 ms of input latency is imposed by the controller itself and cannot be removed.
+
+### 📸 Orbit Camera — 16MP Stills & 4K Video
+Ships with **Orbit Camera**, a purpose-built CameraX camera that unlocks the sensor's full modes. Installed automatically alongside the launcher; the stock INMO camera is replaced and Orbit Camera becomes the system default. **Open Camera is kept installed as a secondary/fallback.**
+
+* **16 MP stills** (4608×3456) — this HAL hides its full-size modes behind `getHighResolutionOutputSizes()`, which ordinary camera apps never call.
+* **4K 30 fps video** (3840×2160), with a one-tap **4K ⇄ FHD** switch. FHD is pinned to a constant 30 fps so exposure can't trade frame rate for light.
+* **Aspect control** for stills — 4:3 (full sensor, all 15.9 MP), 16:9, 1:1.
+* **HDR stills** via the sensor's bracketed-exposure scene mode.
+* **Portrait UI** sized to the actual capture area — the camera is mounted rotated 90°, so an upright frame is portrait.
+
+> **Hardware ceilings, measured on the device — these are not settings:**
+> * **No 60 fps at any resolution.** The sensor advertises `[10,10] [10,15] [15,15] [24,24] [10,30] [30,30]` and publishes no high-speed video configurations at all.
+> * **Video cannot exceed 4096×2160 (8.85 MP).** Both the H.264 and HEVC encoders are capped there, so 16 MP video is impossible on this SoC at any setting.
+> * **No HDR video.** `DYNAMIC_RANGE_TEN_BIT` is absent from the camera's capabilities; HDR is stills-only.
+
+### 🖥️ Remote Desktop & Wireless Display
+* **Built-in RDP client** (FreeRDP 3.x, arm64) — use a PC desktop as a window inside your space. Off by default; enable in **Settings → System → Remote Desktop**.
+* **Miracast sink** — receive a wireless display from Windows.
 
 ### 🛠️ Developer & Power Features
-* **Fixed Wireless ADB**: Auto-enables Wireless ADB on a fixed port (`5555`) across reboots.
-* **Automatic MTP Storage**: Keeps USB file transfer active when plugged into a PC.
-* **CPU Governor Optimizer**: Fixes INMO CPU frequency caps to allow dynamic boosting up to 2.2 GHz when needed.
-* **No Root Required**: Signed with platform certs for full framework permission access out of the box.
+* **Fixed Wireless ADB**: Auto-enables ADB on a **fixed port (`5555`)** across reboots, instead of the random port wireless debugging negotiates each session.
+* **Automatic MTP Storage**: Keeps USB file transfer alive when plugged into a PC — and verifies something is actually *serving* MTP, not merely that the gadget advertises it.
+* **CPU Governor Optimizer**: Removes INMO's frequency clamp, which pins min *and* max to the same value, so the CPU can scale across its full **691 MHz – 1.8 GHz** range instead of being stuck.
+* **Stray App Recovery** *(new in 0.2.0)*: Apps started outside Orbit — via ADB, a notification, or an intent chooser — become ordinary tasks the shell has never heard of and vanish from the launcher. Orbit now finds them and adopts them into the space, keeping their state.
+* **No Root Required**: Signed with the platform certificate for full framework permission access out of the box.
 
 ---
 
@@ -127,7 +153,6 @@ Our community is growing fast! Whether you have feature requests, feedback, bug 
 
 ---
 
-**Made with ❤️ for the AR Community**
 </div>
 If you like what I do, consider supporting future development https://ko-fi.com/j4ckgrey
 <img width="1200" height="600" alt="image" src="https://github.com/user-attachments/assets/1e1ef242-3cbf-4900-b035-33bcda376f02" />
