@@ -118,7 +118,8 @@ Grab the latest release APK from the [Releases Page](../../releases) or build fr
 # Install via ADB
 adb install -r -g Orbit.apk
 
-# (Optional) Bypass INMO first-launch disclaimer
+# (Optional, ROOT ONLY) Bypass INMO's first-launch disclaimer.
+# Orbit itself needs no root — this one convenience step does.
 adb shell su -c 'cmd app_launch_guard add com.j4ckgrey.orbit'
 
 # Launch Orbit Spatial Desktop
@@ -138,6 +139,29 @@ adb shell am start -n com.j4ckgrey.orbit/.SpacesActivity
 | **Toggle App Drawer** | Double-tap empty space or press **Back** |
 | **Scroll Inside App** | Swipe or use DPAD / Arrow keys / Scroll wheel |
 | **Close Window** | Click `✕` or hold **Back** |
+| **Move cursor** *(Gear VR)* | Swipe the controller touchpad |
+| **Click / drag** *(Gear VR)* | Trigger |
+| **Context menu** *(Gear VR)* | Press the touchpad in |
+| **Back / Home / Volume** *(Gear VR)* | The buttons of the same name |
+
+---
+
+## 📋 Requirements
+
+* **INMO Air3 (IMA301)** — Orbit is built against this device's panel, optics and sensors.
+* **Platform-signed build** for full functionality. A release-signed APK still runs, but silently loses `ADD_TRUSTED_DISPLAY` (the IME can no longer render inside a window), `INJECT_EVENTS` (touch falls back to a slow shell path), `FORCE_STOP_PACKAGES` and auto-granted `SYSTEM_ALERT_WINDOW`.
+* **No root required.**
+
+---
+
+## 📝 Changelog
+
+### 0.2.0
+* **Samsung Gear VR controller** as a pointer, with an on/off toggle in Settings → System.
+* **Orbit Camera** replaces the patched Open Camera build: 16 MP stills, 4K/FHD switch, stills HDR, aspect control, portrait UI. Bundled with the launcher, replaces the stock INMO camera, becomes the system default. Open Camera is retained as a fallback.
+* **Stray App Recovery** — apps started outside Orbit (ADB, notifications, choosers) are found and adopted into the shell instead of vanishing from the launcher.
+* Stale launcher components are re-resolved by package, so an app that changes its launch activity on update still opens.
+* Cursor pipeline rewritten: bursts from the controller are replayed at display rate, and the pointer filter is retuned for latency rather than for head-tracking stability.
 
 ---
 
